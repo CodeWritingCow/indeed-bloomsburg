@@ -16,8 +16,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.4",
+    "indeed-api": "^1.0.0",
     "morgan": "^1.7.0",
-    "nodemon": "^1.9.2"
+    "nodemon": "^1.9.2",
+    "request": "^2.72.0"
   },
   "devDependencies": {
     "dotenv": "^2.0.0",
