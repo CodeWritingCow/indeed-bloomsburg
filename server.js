@@ -9,6 +9,9 @@ var express = require('express'), // express is a 'fast, unopinionated minimalis
 	morgan = require('morgan'), // morgan is a HTTP request logger middleware
 	request = require('request'); // request makes HTTP calls
 
+// set view engine to ejs
+app.set('view engine', 'ejs');
+
 // log all HTTP requests in the console
 app.use(morgan('dev'));
 
@@ -22,8 +25,25 @@ app.use(morgan('dev'));
 
 // home page
 app.get('/', function(req, res) {
-	res.send('This is the home page.');
+	res.render('pages/index');
 });
+
+// EJS test route
+app.get('/test', function(req, res) {
+	request('http://api.indeed.com/ads/apisearch?publisher=' + process.env.PUBLISHER_ID + '&format=json' + '&l=bloomsburg%2C+pa&sort=&radius=&st=&jt=&start=&limit=&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+		if (!error && response.statusCode == 200) {
+
+			// var jobs = body;
+			// console.log(body);
+			// console.log(typeof(jobs));
+			console.log(typeof(body));
+			res.render('pages/results', {
+				searchResults: body
+			});
+		}
+	});
+});
+
 
 // berwick jobs 
 app.get('/berwick', function(req, res) {
