@@ -16,44 +16,50 @@ app.use(morgan('dev'));
 // SET THE ROUTES
 // =======================================
 // "req, res" stand for "request, response."
+// Test routes using npm request module.
+// Search query is hard-coded.
+// '&format=json' tells Indeed's API to return search results as JSON.
 
 // home page
 app.get('/', function(req, res) {
 	res.send('This is the home page.');
 });
 
-// berwick jobs
+// berwick jobs 
 app.get('/berwick', function(req, res) {
-	res.send('List Berwick jobs here!');
-});
-
-// bloomsburg jobs
-app.get('/bloomsburg', function(req, res) {
-	res.send('List Bloomsburg jobs here!');
-});
-
-// danville jobs
-app.get('/danville', function(req, res) {
-	// body...
-	res.send('Danville jobs!');
-});
-
-
-// test route using npm request module ... IT RETURNS DATA FROM INDEED API! WOOHOO!
-// Search query is hard-coded.
-app.get('/test3', function(req, res) {
-	// body...
-	request('http://api.indeed.com/ads/apisearch?publisher=' + process.env.PUBLISHER_ID + '&l=bloomsburg%2C+pa&sort=&radius=&st=&jt=&start=&limit=&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+	request('http://api.indeed.com/ads/apisearch?publisher=' + process.env.PUBLISHER_ID + '&format=json' + '&l=berwick%2C+pa&sort=&radius=&st=&jt=&start=&limit=&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
 		if (!error && response.statusCode == 200) {
-			//console.log(body);
-			res.json(body);
+			console.log(body);
+			res.write(body);
+			res.end();
 		}
 	});
 });
 
-// test route using request module. Search query is with parameters.
+// bloomsburg jobs
+app.get('/bloomsburg', function(req, res) {
+	request('http://api.indeed.com/ads/apisearch?publisher=' + process.env.PUBLISHER_ID + '&format=json' + '&l=bloomsburg%2C+pa&sort=&radius=&st=&jt=&start=&limit=&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+		if (!error && response.statusCode == 200) {
+			console.log(body);
+			res.write(body);
+			res.end();
+		}
+	});
+});
+
+// danville jobs
+app.get('/danville', function(req, res) {
+	request('http://api.indeed.com/ads/apisearch?publisher=' + process.env.PUBLISHER_ID + '&format=json' + '&l=danville%2C+pa&sort=&radius=&st=&jt=&start=&limit=&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+		if (!error && response.statusCode == 200) {
+			console.log(body);
+			res.write(body);
+			res.end();
+		}
+	});
+});
+
+// Search query with parameters.
 // ex. '/test/wilkes-barre/pa'
-// Return search results as JSON.
 app.get('/test/:city/:state', function(req, res) {	
 	request('http://api.indeed.com/ads/apisearch?publisher=' + process.env.PUBLISHER_ID + '&format=json' + '&l=' + req.params.city + '%2C+' + req.params.state + '&sort=&radius=&st=&jt=&start=&limit=&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
 		if (!error && response.statusCode == 200) {
