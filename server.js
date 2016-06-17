@@ -28,28 +28,6 @@ app.get('/', function(req, res) {
 	res.render('pages/index');
 });
 
-// EJS test route
-app.get('/test', function(req, res) {
-	request('http://api.indeed.com/ads/apisearch?publisher=' + process.env.PUBLISHER_ID + '&format=json' + '&l=bloomsburg%2C+pa&sort=&radius=&st=&jt=&start=&limit=30&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
-		if (!error && response.statusCode == 200) {
-
-			// console.log(body);
-			var data = JSON.parse(body);
-			res.render('pages/results', {
-				searchTotalResults: data.totalResults,
-				searchLocation: data.location,
-				searchJobTitle: data.results[0].jobtitle,
-				searchCompany: data.results[0].company,
-				searchDate: data.results[0].date,
-				searchSnippet: data.results[0].snippet,
-				searchFormattedLocationFull: data.results[0].formattedLocationFull,
-				searchRelativeTime: data.results[0].formattedRelativeTime,
-				searchResults: data.results
-			});
-		}
-	});
-});
-
 // berwick jobs 
 app.get('/berwick', function(req, res) {
 	request('http://api.indeed.com/ads/apisearch?publisher=' + process.env.PUBLISHER_ID + '&format=json' + '&l=berwick%2C+pa&sort=&radius=&st=&jt=&start=&limit=30&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
@@ -153,7 +131,47 @@ app.get('/geisinger', function(req, res) {
 
 // bloomsburg university jobs
 app.get('/bloomsburg-university', function(req, res) {
-	request('http://api.indeed.com/ads/apisearch?publisher=' + process.env.PUBLISHER_ID + '&format=json' + '&q=bloomsburg university&l=bloomsburg%2C+pa&sort=&radius=&st=&jt=&start=&limit=30&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+	request('http://api.indeed.com/ads/apisearch?publisher=' + process.env.PUBLISHER_ID + '&format=json' + '&q=bloomsburg%20university&l=bloomsburg%2C+pa&sort=&radius=&st=&jt=&start=&limit=30&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+		if (!error && response.statusCode == 200) {
+			var data = JSON.parse(body);
+			res.render('pages/results', {
+				searchTotalResults: data.totalResults,
+				searchLocation: data.location,
+				searchJobTitle: data.results[0].jobtitle,
+				searchCompany: data.results[0].company,
+				searchDate: data.results[0].date,
+				searchSnippet: data.results[0].snippet,
+				searchFormattedLocationFull: data.results[0].formattedLocationFull,
+				searchRelativeTime: data.results[0].formattedRelativeTime,
+				searchResults: data.results
+			});
+		}
+	});
+});
+
+// wise foods jobs
+app.get('/wise-foods', function(req, res) {
+	request('http://api.indeed.com/ads/apisearch?publisher=' + process.env.PUBLISHER_ID + '&format=json' + '&q=wise foods&l=berwick%2C+pa&sort=&radius=&st=&jt=&start=&limit=30&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+		if (!error && response.statusCode == 200) {
+			var data = JSON.parse(body);
+			res.render('pages/results', {
+				searchTotalResults: data.totalResults,
+				searchLocation: data.location,
+				searchJobTitle: data.results[0].jobtitle,
+				searchCompany: data.results[0].company,
+				searchDate: data.results[0].date,
+				searchSnippet: data.results[0].snippet,
+				searchFormattedLocationFull: data.results[0].formattedLocationFull,
+				searchRelativeTime: data.results[0].formattedRelativeTime,
+				searchResults: data.results
+			});
+		}
+	});
+});
+
+// berwick hospital center jobs
+app.get('/berwick-hospital-center', function(req, res) {
+	request('http://api.indeed.com/ads/apisearch?publisher=' + process.env.PUBLISHER_ID + '&format=json' + '&q=berwick hospital&l=berwick%2C+pa&sort=&radius=&st=&jt=&start=&limit=30&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
 		if (!error && response.statusCode == 200) {
 			var data = JSON.parse(body);
 			res.render('pages/results', {
