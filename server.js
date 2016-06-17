@@ -33,12 +33,18 @@ app.get('/test', function(req, res) {
 	request('http://api.indeed.com/ads/apisearch?publisher=' + process.env.PUBLISHER_ID + '&format=json' + '&l=bloomsburg%2C+pa&sort=&radius=&st=&jt=&start=&limit=&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
 		if (!error && response.statusCode == 200) {
 
-			// var jobs = body;
 			// console.log(body);
-			// console.log(typeof(jobs));
-			console.log(typeof(body));
+			var data = JSON.parse(body);
 			res.render('pages/results', {
-				searchResults: body
+				searchTotalResults: data.totalResults,
+				searchLocation: data.location,
+				searchJobTitle: data.results[0].jobtitle,
+				searchCompany: data.results[0].company,
+				searchDate: data.results[0].date,
+				searchSnippet: data.results[0].snippet,
+				searchUrl: data.results[0].url,
+				searchFormattedLocationFull: data.results[0].formattedLocationFull,
+				searchRelativeTime: data.results[0].formattedRelativeTime
 			});
 		}
 	});

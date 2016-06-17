@@ -17,7 +17,17 @@
 			<p>Welcome!</p>
 
 			<div class="well">
-			<%= searchResults %>
+				<ul>
+					<li>Total Results: <%- searchTotalResults %></li>
+					<li>City: <%- searchLocation %></li>
+					<li>Job: <%- searchJobTitle %></li>
+					<li>Company: <%- searchCompany %></li>
+					<li>Date: <%- searchDate %></li>
+					<li>Description: <%- searchSnippet %></li>
+					<li>Location: <%- searchFormattedLocationFull %></li>
+					<li>Posted <%- searchRelativeTime %></li>
+					<li>Apply <a href="<%- searchUrl %>">here.</a></li>
+				</ul>
 			</div>
 
 		</div>
