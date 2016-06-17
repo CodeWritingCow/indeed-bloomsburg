@@ -30,7 +30,7 @@ app.get('/', function(req, res) {
 
 // EJS test route
 app.get('/test', function(req, res) {
-	request('http://api.indeed.com/ads/apisearch?publisher=' + process.env.PUBLISHER_ID + '&format=json' + '&l=bloomsburg%2C+pa&sort=&radius=&st=&jt=&start=&limit=&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+	request('http://api.indeed.com/ads/apisearch?publisher=' + process.env.PUBLISHER_ID + '&format=json' + '&l=bloomsburg%2C+pa&sort=&radius=&st=&jt=&start=&limit=20&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
 		if (!error && response.statusCode == 200) {
 
 			// console.log(body);
@@ -44,7 +44,8 @@ app.get('/test', function(req, res) {
 				searchSnippet: data.results[0].snippet,
 				searchUrl: data.results[0].url,
 				searchFormattedLocationFull: data.results[0].formattedLocationFull,
-				searchRelativeTime: data.results[0].formattedRelativeTime
+				searchRelativeTime: data.results[0].formattedRelativeTime,
+				searchResults: data.results
 			});
 		}
 	});
