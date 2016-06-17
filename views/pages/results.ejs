@@ -18,6 +18,12 @@
 
 			<div class="well">
 				<ul>
+					<% searchResults.forEach(function(result) { %>
+					<li><a href="<%= result.url %>"><%= result.jobtitle %></a>: <%= result.company %>, <%= result.formattedLocationFull %></li>
+					<% }); %>
+				</ul>
+				<hr>
+				<ul>
 					<li>Total Results: <%- searchTotalResults %></li>
 					<li>City: <%- searchLocation %></li>
 					<li>Job: <%- searchJobTitle %></li>
@@ -27,12 +33,6 @@
 					<li>Location: <%- searchFormattedLocationFull %></li>
 					<li>Posted <%- searchRelativeTime %></li>
 					<li>Apply <a href="<%- searchUrl %>">here.</a></li>
-				</ul>
-				<hr>
-				<ul>
-					<% searchResults.forEach(function(result) { %>
-					<li><a href="<%= result.url %>"><%= result.jobtitle %></a>: <%= result.company %>, <%= result.formattedLocationFull %></li>
-					<% }); %>
 				</ul>
 			</div>
 
