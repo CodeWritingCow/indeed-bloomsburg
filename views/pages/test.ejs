@@ -16,6 +16,15 @@
 			<p>Jobs near <%- searchLocation %>.</p>
 
 			<div class="well">
+
+				<div>
+					<form action="" method="get">
+						<input type="text" placeholder=" Search Jobs" name="req.query.q">
+						<input type="submit" value="Submit">
+					</form>
+					<br>
+				</div>
+
 				<ul>
 					<% searchResults.forEach(function(result) { %>
 					<li><a href="<%= result.url %>"><%= result.jobtitle %></a>: <%= result.company %>, <%= result.formattedLocationFull %></li>
