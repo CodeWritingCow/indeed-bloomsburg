@@ -16,15 +16,6 @@
 			<p>Jobs near <%- searchLocation %>.</p>
 
 			<div class="well">
-
-				<div>
-					<form action="/test/search" method="post">
-						<input type="text" placeholder=" Search Jobs" name="jobQuery">
-						<input type="submit" value="Submit">
-					</form>
-					<br>
-				</div>
-
 				<ul>
 					<% searchResults.forEach(function(result) { %>
 					<li><a href="<%= result.url %>"><%= result.jobtitle %></a>: <%= result.company %>, <%= result.formattedLocationFull %></li>
