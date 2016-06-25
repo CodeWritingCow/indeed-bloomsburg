@@ -8,7 +8,11 @@ var express = require('express'), // express is a 'fast, unopinionated minimalis
 	app = express(), // initialize app with express
 	morgan = require('morgan'), // morgan is a HTTP request logger middleware
 	request = require('request'), // request makes HTTP calls
-	config = require('./config'); // configuration file for app
+	config = require('./config'), // configuration file for app
+	bodyParser = require('body-parser'); // adds body object to request so app can access POST parameters
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // set view engine to ejs
 app.set('view engine', 'ejs');
@@ -84,6 +88,31 @@ app.get('/test/:city/:state', function(req, res) {
 				searchRelativeTime: data.results[0].formattedRelativeTime,
 				searchResults: data.results
 			});
+		}
+	});
+});
+
+// POST route. Search query with parameters. User's input from search form goes here!
+app.post('/test/search', function(req, res) {
+	
+	// req.body.jobQuery contains user's input from search form
+	var jobQuery = req.body.jobQuery;
+
+	request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=' + jobQuery + '&l=bloomsburg%2C+pa&sort=&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+		if (!error && response.statusCode == 200) {
+			var data = JSON.parse(body);
+			res.render('pages/test', {
+				searchTotalResults: data.totalResults,
+				searchLocation: data.location,
+				searchJobTitle: data.results[0].jobtitle,
+				searchCompany: data.results[0].company,
+				searchDate: data.results[0].date,
+				searchSnippet: data.results[0].snippet,
+				searchFormattedLocationFull: data.results[0].formattedLocationFull,
+				searchRelativeTime: data.results[0].formattedRelativeTime,
+				searchResults: data.results
+			});
+			console.log(jobQuery);
 		}
 	});
 });
