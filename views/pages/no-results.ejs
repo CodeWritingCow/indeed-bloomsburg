@@ -13,18 +13,16 @@
 	<main>
 		<div class="jumbotron">
 			<h1>Job Hunters</h1>
-			<p>Jobs near <%- searchLocation %>.</p>
 
 			<div class="well">
+				<p>Your search did not return any results.</p>
+				<p>Suggestions:</p>
 				<ul>
-					<% searchResults.forEach(function(result) { %>
-					<li><a href="<%= result.url %>"><%= result.jobtitle %></a>: <%= result.company %>, <%= result.formattedLocationFull %></li>
-					<% }); %>
+					<li>Use whole words instead of abbreviations.</li>
+					<li>Try variations of a company's name.</li>
 				</ul>
-				<hr>
-
+				<br>
 				<% include ../partials/search-form %>
-
 			</div>
 
 		</div>
