@@ -101,6 +101,14 @@ app.post('/test/search', function(req, res) {
 	request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=' + jobQuery + '&l=bloomsburg%2C+pa&sort=&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
 		if (!error && response.statusCode == 200) {
 			var data = JSON.parse(body);
+
+			// middleware checks if job search returns any results.
+			// without this, app crashes
+			if (data.results[0] === undefined) {
+				res.send("No jobs found");
+				//res.redirect('/geisinger');
+			} else {
+
 			res.render('pages/test', {
 				searchTotalResults: data.totalResults,
 				searchLocation: data.location,
@@ -113,6 +121,7 @@ app.post('/test/search', function(req, res) {
 				searchResults: data.results
 			});
 			console.log(jobQuery);
+			}
 		}
 	});
 });
