@@ -1,0 +1,33 @@
+{
+  "name": "indeed-bloomsburg",
+  "version": "1.0.0",
+  "description": "Website for job hunters in Bloomsburg, PA. Based on Indeed.com's API.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "keywords": [
+    "jobs",
+    "Bloomsburg",
+    "Indeed.com"
+  ],
+  "author": "Gary Pang",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "ejs": "^2.4.2",
+    "express": "^4.13.4",
+    "morgan": "^1.7.0",
+    "nodemon": "^1.9.2",
+    "request": "^2.72.0"
+  },
+  "devDependencies": {
+    "dotenv": "^2.0.0",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.10",
+    "gulp-ejsmin": "0.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.4"
+  }
+}

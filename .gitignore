@@ -23,8 +23,6 @@ $RECYCLE.BIN/
 # Dependency directories
 node_modules
 
-# Distribution directories
-dist
 
 # =========================
 # Operating System Files
