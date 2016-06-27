@@ -32,6 +32,6 @@ gulp.task('min-ejs', ['min-ejs-pages', 'min-ejs-partials']);
 
 // task for building app for deployment
 gulp.task('build', ['min-js', 'min-ejs'], function() {
-	return gulp.src(['package.json', 'Procfile'])
+	return gulp.src(['package.json', 'Procfile', 'config.js'])
 			   .pipe(gulp.dest('./dist'));
 });
