@@ -80,12 +80,6 @@ app.get('/test/:city/:state', function(req, res) {
 			res.render('pages/test', {
 				searchTotalResults: data.totalResults,
 				searchLocation: data.location,
-				searchJobTitle: data.results[0].jobtitle,
-				searchCompany: data.results[0].company,
-				searchDate: data.results[0].date,
-				searchSnippet: data.results[0].snippet,
-				searchFormattedLocationFull: data.results[0].formattedLocationFull,
-				searchRelativeTime: data.results[0].formattedRelativeTime,
 				searchResults: data.results
 			});
 		}
@@ -93,12 +87,12 @@ app.get('/test/:city/:state', function(req, res) {
 });
 
 // POST route. Search query with parameters. User's input from search form goes here!
-app.post('/test/search', function(req, res) {
+app.post('/search', function(req, res) {
 	
 	// req.body.jobQuery contains user's input from search form
 	var jobQuery = req.body.jobQuery;
 
-	request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=' + jobQuery + '&l=bloomsburg%2C+pa&sort=&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+	request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=' + jobQuery + '&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
 		if (!error && response.statusCode == 200) {
 			var data = JSON.parse(body);
 
@@ -108,15 +102,9 @@ app.post('/test/search', function(req, res) {
 				//res.send("Your search for \"" + jobQuery +  "\"" + " did not return any results.");
 				res.redirect('/no-results');
 			} else {
-			res.render('pages/test', {
+			res.render('pages/results', {
 				searchTotalResults: data.totalResults,
 				searchLocation: data.location,
-				searchJobTitle: data.results[0].jobtitle,
-				searchCompany: data.results[0].company,
-				searchDate: data.results[0].date,
-				searchSnippet: data.results[0].snippet,
-				searchFormattedLocationFull: data.results[0].formattedLocationFull,
-				searchRelativeTime: data.results[0].formattedRelativeTime,
 				searchResults: data.results
 			});
 			}
