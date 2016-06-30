@@ -17,11 +17,15 @@
 			<p>Jobs near <%- searchLocation %>.</p>
 
 			<div class="well">
-				<ul>
+				<ul style="list-style: none;">
 					<% searchResults.forEach(function(result) { %>
-					<li><a href="<%= result.url %>"><%= result.jobtitle %></a>: <%= result.company %>, <%= result.formattedLocationFull %></li>
+					<li style="font-size: 1.5em;"><a href="<%= result.url %>" target="_blank"><%= result.jobtitle.toUpperCase() %></a></li>
+					<li><%= result.company %> - <%= result.formattedLocationFull %></li>
+					<li><i><%= result.formattedRelativeTime %></i></li>
+					<hr>
 					<% }); %>
 				</ul>
+				<hr>
 			</div>
 
 			<% include ../partials/search-form %>
