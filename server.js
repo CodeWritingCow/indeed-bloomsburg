@@ -74,6 +74,45 @@ app.get('/towns/danville', function(req, res) {
 	});
 });
 
+// lewisburg jobs
+app.get('/towns/lewisburg', function(req, res) {
+	request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&l=lewisburg%2C+pa&sort=date&radius=' + config.results_radius + '&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+		if (!error && response.statusCode == 200) {
+			var data = JSON.parse(body);
+			res.render('pages/results', {
+				searchLocation: data.location,
+				searchResults: data.results
+			});
+		}
+	});
+});
+
+// milton jobs
+app.get('/towns/milton', function(req, res) {
+	request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&l=milton%2C+pa&sort=date&radius=' + config.results_radius + '&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+		if (!error && response.statusCode == 200) {
+			var data = JSON.parse(body);
+			res.render('pages/results', {
+				searchLocation: data.location,
+				searchResults: data.results
+			});
+		}
+	});
+});
+
+// sunbury jobs
+app.get('/towns/sunbury', function(req, res) {
+	request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&l=sunbury%2C+pa&sort=date&radius=' + config.results_radius + '&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+		if (!error && response.statusCode == 200) {
+			var data = JSON.parse(body);
+			res.render('pages/results', {
+				searchLocation: data.location,
+				searchResults: data.results
+			});
+		}
+	});
+});
+
 // Search query with parameters.
 // ex. '/test/wilkes-barre/pa'
 app.get('/test/:city/:state', function(req, res) {	
