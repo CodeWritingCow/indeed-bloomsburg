@@ -97,8 +97,9 @@ app.post('/search', function(req, res) {
 			// middleware checks if job search returns any results.
 			// without this, app crashes when search returns no results.
 			if (data.totalResults === 0) {
-				//res.send("Your search for \"" + jobQuery +  "\"" + " did not return any results.");
-				res.redirect('/no-results');
+				res.render('pages/no-results', {
+					noResultsJobQuery: jobQuery
+				});
 			} else {
 			res.render('pages/results', {
 				searchTotalResults: data.totalResults,
@@ -108,10 +109,6 @@ app.post('/search', function(req, res) {
 			}
 		}
 	});
-});
-
-app.get('/no-results', function(req, res) {
-	res.render('pages/no-results');
 });
 
 // geisinger jobs
