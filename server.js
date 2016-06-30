@@ -24,8 +24,6 @@ app.use(morgan('dev'));
 // SET THE ROUTES
 // =======================================
 // "req, res" stand for "request, response."
-// Test routes using npm request module.
-// Search query is hard-coded.
 
 // home page
 app.get('/', function(req, res) {
@@ -77,7 +75,7 @@ app.get('/test/:city/:state', function(req, res) {
 	request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&l=' + req.params.city + '%2C+' + req.params.state + '&sort=&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
 		if (!error && response.statusCode == 200) {
 			var data = JSON.parse(body);
-			res.render('pages/test', {
+			res.render('pages/results', {
 				searchTotalResults: data.totalResults,
 				searchLocation: data.location,
 				searchResults: data.results
@@ -113,7 +111,6 @@ app.post('/search', function(req, res) {
 });
 
 app.get('/no-results', function(req, res) {
-	// body...
 	res.render('pages/no-results');
 });
 
