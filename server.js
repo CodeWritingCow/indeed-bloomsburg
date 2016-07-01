@@ -225,6 +225,32 @@ app.get('/employers/berwick-hospital-center', function(req, res) {
 	});
 });
 
+// evangelical community hospital jobs
+app.get('/employers/evangelical-community-hospital', function(req, res) {
+	request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=evangelical%20community%20hospital&l=lewisburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+		if (!error && response.statusCode == 200) {
+			var data = JSON.parse(body);
+			res.render('pages/results', {
+				searchLocation: data.location,
+				searchResults: data.results
+			});
+		}
+	});
+});
+
+// BAYADA jobs
+app.get('/employers/bayada', function(req, res) {
+	request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=bayada&l=berwick%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+		if (!error && response.statusCode == 200) {
+			var data = JSON.parse(body);
+			res.render('pages/results', {
+				searchLocation: data.location,
+				searchResults: data.results
+			});
+		}
+	});
+});
+
 // dollar general jobs
 app.get('/employers/dollar-general', function(req, res) {
 	request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=dollar%20general&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
@@ -238,9 +264,35 @@ app.get('/employers/dollar-general', function(req, res) {
 	});
 });
 
+// maria joseph manor jobs
+app.get('/employers/maria-joseph-manor', function(req, res) {
+	request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=maria%20joseph%20manor&l=danville%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+		if (!error && response.statusCode == 200) {
+			var data = JSON.parse(body);
+			res.render('pages/results', {
+				searchLocation: data.location,
+				searchResults: data.results
+			});
+		}
+	});
+});
+
 // sheetz jobs
 app.get('/employers/sheetz', function(req, res) {
 	request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=sheetz&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+		if (!error && response.statusCode == 200) {
+			var data = JSON.parse(body);
+			res.render('pages/results', {
+				searchLocation: data.location,
+				searchResults: data.results
+			});
+		}
+	});
+});
+
+// victoria's secret jobs
+app.get('/employers/victorias-secret', function(req, res) {
+	request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=victoria&rsquo;%20secret&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
 		if (!error && response.statusCode == 200) {
 			var data = JSON.parse(body);
 			res.render('pages/results', {
