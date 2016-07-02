@@ -6,13 +6,6 @@ module.exports = function(app, express) {
 	
 	var employerRouter = express.Router();
 
-	// test middleware
-	employerRouter.use('/', function(req, res, next) {
-		// body...
-		console.log("Job seeker has arrived at our company!");
-		next();
-	});
-
 	// employers
 	employerRouter.get('/', function(req, res) {
 		res.render('pages/employers');

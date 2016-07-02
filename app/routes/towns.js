@@ -6,9 +6,26 @@ module.exports = function(app, express) {
 	
 	var townRouter = express.Router();
 
+	// test middleware
+	townRouter.use('/', function(req, res, next) {
+		console.log("Job seeker has arrived in our town!");
+		next();
+	});
+
+
 	// towns
 	townRouter.get('/', function(req, res) {
 		res.render('pages/towns');
+	});
+
+	// test route 
+	townRouter.get('/test', function(req, res) {
+		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&l=berwick%2C+pa&sort=&radius=' + config.results_radius + '&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+			// EXECUTE TEST MIDDLEWARE HERE
+			console.log("EXECUTE TEST MIDDLEWARE HERE!");
+			res.send("EXECUTE TEST MIDDLEWARE HERE!");
+			res.end();
+		});
 	});
 
 	// berwick jobs 
