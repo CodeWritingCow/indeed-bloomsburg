@@ -3,7 +3,7 @@ var bodyParser = require('body-parser'),
 	config = require('../../config');
 
 module.exports = function(app, express) {
-	// body...
+	
 	var employerRouter = express.Router();
 
 	// test middleware
