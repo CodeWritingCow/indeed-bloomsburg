@@ -23,6 +23,8 @@ $RECYCLE.BIN/
 # Dependency directories
 node_modules
 
+# To Do list
+todo-list.txt
 
 # =========================
 # Operating System Files

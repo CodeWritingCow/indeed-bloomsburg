@@ -13,6 +13,14 @@ gulp.task('min-js', function() {
 			   .pipe(gulp.dest('dist'));
 });
 
+// task for minifying *.js containing routes
+gulp.task('min-js-routes', function() {
+	return gulp.src('./app/routes/*.js')
+			   .pipe(uglify())
+			   .pipe(rename({ suffix: '.min'}))
+			   .pipe(gulp.dest('./dist/app/routes'));
+});
+
 // task for minifying pages/*.ejs
 gulp.task('min-ejs-pages', function() {
 	return gulp.src('./views/pages/*.ejs')
@@ -31,7 +39,7 @@ gulp.task('min-ejs-partials', function() {
 gulp.task('min-ejs', ['min-ejs-pages', 'min-ejs-partials']);
 
 // task for building app for deployment
-gulp.task('build', ['min-js', 'min-ejs'], function() {
+gulp.task('build', ['min-js', 'min-js-routes', 'min-ejs'], function() {
 	return gulp.src(['package.json', 'Procfile', 'config.js'])
 			   .pipe(gulp.dest('./dist'));
 });
