@@ -35,6 +35,10 @@ app.use('/employers', employerRoutes);
 var searchRoute = require('./app/routes/search')(app, express);
 app.use('/', searchRoute);
 
+// this mounts test route for testing middlewares and new site features
+var testRoute = require('./app/routes/test')(app, express);
+app.use('/test', testRoute);
+
 // home page
 app.get('/', function(req, res) {
 	res.render('pages/index');
