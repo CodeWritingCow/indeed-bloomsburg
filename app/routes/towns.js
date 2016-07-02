@@ -7,7 +7,7 @@ module.exports = function(app, express) {
 	var townRouter = express.Router();
 
 	// test middleware
-	townRouter.use('/', function(req, res, next) {
+	townRouter.use('/test', function(req, res, next) {
 		console.log("Job seeker has arrived in our town!");
 		next();
 	});
