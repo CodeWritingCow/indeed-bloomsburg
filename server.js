@@ -32,11 +32,11 @@ app.use('/towns', townRoutes);
 var employerRoutes = require('./app/routes/employers')(app, express);
 app.use('/employers', employerRoutes);
 
+var jobTitleRoutes = require('./app/routes/job-titles')(app, express);
+app.use('/job-titles', jobTitleRoutes);
+
 var searchRoute = require('./app/routes/search')(app, express);
 app.use('/', searchRoute);
-
-var jobTypeRoutes = require('./app/routes/job-types')(app, express);
-app.use('/job-types', jobTypeRoutes);
 
 // this mounts test route for testing middlewares and new site features
 var testRoute = require('./app/routes/test')(app, express);
