@@ -21,6 +21,7 @@ module.exports = function(app, express) {
 				// console.log(jobUrl); // this works.
 				// jobUrl = "I'm at " + data.location;
 				// jobUrl = url; // this works
+				jobUrl = data; // saves job search results to global scope
 				return;
 			}
 		});
