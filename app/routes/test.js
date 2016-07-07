@@ -7,21 +7,17 @@ var bodyParser = require('body-parser'),
 module.exports = function(app, express) {
 
 	// global variable for capturing data from testHandler(url)
-	var jobUrl;
+	var jobData;
 	
 	var testRouter = express.Router();
 
 	// test function
 	function testHandler(url) {
 
-		request(url, function(error, response, body) { // this works. request() makes HTTP calls and gets response.
+		request(url, function(error, response, body) {
 			if (!error && response.statusCode == 200) {
-				var data = JSON.parse(body); // this works. Parses JSON response from request() and saves it as var data.
-				//console.log(data.location); // this works.
-				// console.log(jobUrl); // this works.
-				// jobUrl = "I'm at " + data.location;
-				// jobUrl = url; // this works
-				jobUrl = data; // saves job search results to global scope
+				var data = JSON.parse(body);
+				jobData = data; // saves job search results to global scope
 				return;
 			}
 		});
@@ -35,18 +31,10 @@ module.exports = function(app, express) {
 
 	// test route 
 	testRouter.get('/', function(req, res) {
-		/*request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&l=berwick%2C+pa&sort=&radius=' + config.results_radius + '&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
-			// EXECUTE TEST MIDDLEWARE HERE
-			// console.log("EXECUTE TEST MIDDLEWARE HERE!");
-			res.send("EXECUTE TEST MIDDLEWARE HERE!");
-			res.end();
-		});*/
-		testHandler('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&l=berwick%2C+pa&sort=&radius=' + config.results_radius + '&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2'); // this works. passes url to testHandler().
-		console.log(jobUrl); // this now works. returns results from Indeed job search.
-		// res.send(jobUrl); // this works
+		testHandler('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&l=berwick%2C+pa&sort=&radius=' + config.results_radius + '&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2');
 		res.render('pages/results', {
-			searchLocation: jobUrl.location,
-			searchResults: jobUrl.results
+			searchLocation: jobData.location,
+			searchResults: jobData.results
 		});
 	});
 
