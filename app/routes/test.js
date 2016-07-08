@@ -18,9 +18,11 @@ module.exports = function(app, express) {
 	}	
 
 	// global variable for capturing data from urlHandler(url)
+	var jobData;
 
 	// towns
 	testRouter.get('/', function(req, res) {
+		res.render('pages/test');
 	});
 
 	// berwick jobs 
