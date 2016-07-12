@@ -21,6 +21,8 @@ app.set('view engine', 'ejs');
 // log all HTTP requests in the console
 app.use(morgan('dev'));
 
+// declare static directory for static assets
+app.use("/public", express.static(__dirname + "/public"));
 
 // SET THE ROUTES
 // =======================================

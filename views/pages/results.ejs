@@ -13,9 +13,9 @@
 
 	<main>
 		<div class="jumbotron">
-			<p>Jobs near <%- searchLocation %>.</p>
+			<p>Jobs near <span class="capitalize"><%- searchLocation %></span></p>
 			<% if(typeof(resultsJobQuery) !== 'undefined') { %>
-			<p>Your search for "<%- resultsJobQuery %>" near <%- searchLocation %> returned <%- searchTotalResults %> results.</p>
+			<p>Your search for "<%- resultsJobQuery %>" near <span class="capitalize"><%- searchLocation %></span> returned <%- searchTotalResults %> results.</p>
 			<% } %>			
 			
 			<% include ../partials/search-form %>
