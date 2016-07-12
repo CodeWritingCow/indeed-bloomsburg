@@ -24,6 +24,7 @@ module.exports = function(app, express) {
 					});
 				} else {
 				res.render('pages/results', {
+					resultsJobQuery: jobQuery,
 					searchTotalResults: data.totalResults,
 					searchLocation: data.location,
 					searchResults: data.results

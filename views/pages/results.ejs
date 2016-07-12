@@ -14,6 +14,10 @@
 	<main>
 		<div class="jumbotron">
 			<p>Jobs near <%- searchLocation %>.</p>
+			<% if(typeof(resultsJobQuery) !== 'undefined') { %>
+			<p>Your search for "<%- resultsJobQuery %>" near <%- searchLocation %> returned <%- searchTotalResults %> results.</p>
+			<% } %>			
+			
 			<% include ../partials/search-form %>
 			<div class="well">
 				<ul style="list-style: none;">
