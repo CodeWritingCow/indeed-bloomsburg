@@ -1,8 +1,8 @@
-ul li > li:hover {
+/*.nav li li:hover {
 	background-color: #4a4a4a;
 	color: white;
 }
-
+*/
 .capitalize {
 	text-transform: capitalize;
 }
