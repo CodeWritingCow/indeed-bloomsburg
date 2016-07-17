@@ -43,11 +43,17 @@ gulp.task('min-css', function() {
 			   .pipe(gulp.dest('./dist/public/assets/css'));
 });
 
+// TODO task for minifying img
+gulp.task('min-img', function() {
+	return gulp.src('./public/assets/img/*.+(jpg|png|gif|svg)')
+			   .pipe(gulp.dest('./dist/public/assets/img'));
+});
+
 // task for running min-ejs-pages and min-ejs partials
 gulp.task('min-ejs', ['min-ejs-pages', 'min-ejs-partials']);
 
 // task for building app for deployment
-gulp.task('build', ['min-js', 'min-js-routes', 'min-ejs', 'min-css'], function() {
+gulp.task('build', ['min-js', 'min-js-routes', 'min-ejs', 'min-css', 'min-img'], function() {
 	return gulp.src(['package.json', 'Procfile', 'config.js'])
 			   .pipe(gulp.dest('./dist'));
 });
