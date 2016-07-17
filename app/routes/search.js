@@ -20,7 +20,8 @@ module.exports = function(app, express) {
 				// without this, app crashes when search returns no results.
 				if (data.totalResults === 0) {
 					res.render('pages/no-results', {
-						noResultsJobQuery: jobQuery
+						noResultsJobQuery: jobQuery,
+						searchLocation: 'Bloomsburg'
 					});
 				} else {
 				res.render('pages/results', {

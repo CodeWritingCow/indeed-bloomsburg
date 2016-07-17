@@ -1,5 +1,9 @@
 <div class="text-center">
 
+		<% if(typeof(resultsJobQuery) !== 'undefined') { %>
+		<em>Didn't find what you were looking for? Try these job websites. "<%- resultsJobQuery %>" near <span class="capitalize"><%- searchLocation %>.</span></em>
+		<% } %>	
+
 	<h5 style="text-align: center;">Other Sites:
 	<a href="http://www.careerbuilder.com/jobseeker/jobs/jobresults.aspx?qb=1&n_SB%3Asbkw=&n_SB%3As_freeloc=17815" target="CB">CareerBuilder</a> |
 	<a href="https://www.dice.com/jobs?q=&l=Bloomsburg%2C+PA" target="dice">Dice</A> |
@@ -10,10 +14,10 @@
 	vertical-align: middle;" alt="Indeed job search"></a></span> |
 	<a href="https://www.linkedin.com/vsearch/j?postalCode=17815&countryCode=us&distance=25" target="LI">LinkedIn</a> |
 	<a href="http://jobs.monster.com/l-bloomsburg,-pa.aspx" target="Monster">Monster</a> |
-	<a href="http://www.simplyhired.com/search?l=Bloomsburg%2C+PA" target="SH">SimplyHired</a> |
+	<a href="http://www.simplyhired.com/search?l=<%- searchLocation %>%2C+PA" target="SH">SimplyHired</a> |
 	<a href="http://www.skipthedrive.com" target="STD">SkipTheDrive</a> |
 	<a href="http://www.snagajob.com/job-search/s-pennsylvania/l-bloomsburg/w-bloomsburg,+pa?ui=true" target="SAJ">Snag-A-Job</a> |
-	<a href="https://www.ziprecruiter.com/candidate/search?search=&location=Bloomsburg+PA&radius=25" target="ZR">ZipRecruiter</a>
+	<a href="https://www.ziprecruiter.com/candidate/search?search=&location=<%- searchLocation %>+PA&radius=25" target="ZR">ZipRecruiter</a>
 	</h5>
 
 	<hr style="border-top: 1px dashed black;">

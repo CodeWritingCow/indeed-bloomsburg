@@ -8,7 +8,9 @@ module.exports = function(app, express) {
 
 	// towns
 	townRouter.get('/', function(req, res) {
-		res.render('pages/towns');
+		res.render('pages/towns', {
+			searchLocation: 'Bloomsburg'
+		});
 	});
 
 	// berwick jobs 
@@ -17,7 +19,7 @@ module.exports = function(app, express) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
-					searchLocation: data.location,
+					searchLocation: 'Berwick',
 					searchResults: data.results
 				});
 			}
@@ -30,7 +32,7 @@ module.exports = function(app, express) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
-					searchLocation: data.location,
+					searchLocation: 'Bloomsburg',
 					searchResults: data.results
 				});
 			}
@@ -43,7 +45,7 @@ module.exports = function(app, express) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
-					searchLocation: data.location,
+					searchLocation: 'Danville',
 					searchResults: data.results
 				});
 			}
@@ -56,7 +58,7 @@ module.exports = function(app, express) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
-					searchLocation: data.location,
+					searchLocation: 'Lewisburg',
 					searchResults: data.results
 				});
 			}
@@ -69,7 +71,7 @@ module.exports = function(app, express) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
-					searchLocation: data.location,
+					searchLocation: 'Milton',
 					searchResults: data.results
 				});
 			}
@@ -82,7 +84,7 @@ module.exports = function(app, express) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
-					searchLocation: data.location,
+					searchLocation: 'Sunbury',
 					searchResults: data.results
 				});
 			}

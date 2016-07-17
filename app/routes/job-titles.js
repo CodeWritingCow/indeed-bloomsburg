@@ -7,7 +7,9 @@ module.exports = function(app, express) {
 	var jobTitleRouter = express.Router();
 
 	jobTitleRouter.get('/', function(req, res) {
-		res.render('pages/job-titles');
+		res.render('pages/job-titles', {
+			searchLocation: 'Bloomsburg'
+		});
 	});
 
 	// cashier

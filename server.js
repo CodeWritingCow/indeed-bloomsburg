@@ -46,7 +46,9 @@ app.use('/test', testRoute);
 
 // home page
 app.get('/', function(req, res) {
-	res.render('pages/index');
+	res.render('pages/index', {
+		searchLocation: 'Bloomsburg'
+	});
 });
 
 // START THE SERVER

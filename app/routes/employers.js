@@ -8,7 +8,9 @@ module.exports = function(app, express) {
 
 	// employers
 	employerRouter.get('/', function(req, res) {
-		res.render('pages/employers');
+		res.render('pages/employers', {
+			searchLocation: 'Bloomsburg'
+		});
 	});
 
 	// alcoa jobs
