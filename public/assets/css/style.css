@@ -1,8 +1,50 @@
-/*.nav li li:hover {
-	background-color: #4a4a4a;
-	color: white;
+.navbar-brand {
+	background-color: #565656;
+ 	color: transparent;
+	text-shadow: 0px 2px 3px rgba(255,255,255,0.5);
+	-webkit-background-clip: text;
+	 -moz-background-clip: text;
+	      background-clip: text;
 }
-*/
+
+.nav li li:hover {
+	background-color: white;
+	/*color: #4a4a4a;*/
+}
+
 .capitalize {
 	text-transform: capitalize;
+}
+
+html {
+	background: url('/public/assets/img/Market-Square-Bloomsburg-Pa-(68605).jpg') no-repeat center fixed;
+	background-size: cover;
+}
+
+.container {
+	background-color: transparent;
+}
+
+nav {
+	-webkit-box-shadow: 10px 10px 5px -7px rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 10px 5px -7px rgba(0,0,0,0.75);
+	box-shadow: 10px 10px 5px -7px rgba(0,0,0,0.75);
+	background-image: url('/public/assets/img/seamlesspaper6.jpg');
+}
+
+.jumbotron {
+	-webkit-box-shadow: 10px 10px 5px -7px rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 10px 5px -7px rgba(0,0,0,0.75);
+	box-shadow: 10px 10px 5px -7px rgba(0,0,0,0.75);
+	background-image: url('/public/assets/img/seamlesspaper6.jpg');
+}
+
+footer {
+	border-radius: 6px;
+	padding: 5px;
+	-webkit-box-shadow: 10px 10px 5px -7px rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 10px 5px -7px rgba(0,0,0,0.75);
+	box-shadow: 10px 10px 5px -7px rgba(0,0,0,0.75);
+	background-image: url('/public/assets/img/seamlesspaper6.jpg');
+	/*background-color: rgb(238, 238, 238);*/
 }
