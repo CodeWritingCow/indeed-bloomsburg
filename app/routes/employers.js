@@ -4,6 +4,14 @@ var bodyParser = require('body-parser'),
 
 module.exports = function(app, express) {
 	
+	// gets town and omit state from data.location. ex. 'bloomsburg, pa' becomes 'bloomsburg'
+	function getFirstWord(str) {
+	        if (str.indexOf(',') === -1)
+	            return str;
+	        else
+	            return str.substr(0, str.indexOf(','));
+	    }
+
 	var employerRouter = express.Router();
 
 	// employers
@@ -19,7 +27,7 @@ module.exports = function(app, express) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
-					searchLocation: data.location,
+					searchLocation: getFirstWord(data.location),
 					searchResults: data.results
 				});
 			}
