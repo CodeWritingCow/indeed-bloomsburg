@@ -53,7 +53,7 @@ module.exports = function(app, express) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
-					searchLocation: data.location,
+					searchLocation: getFirstWord(data.location),
 					searchResults: data.results
 				});
 			}
@@ -66,7 +66,7 @@ module.exports = function(app, express) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
-					searchLocation: data.location,
+					searchLocation: getFirstWord(data.location),
 					searchResults: data.results
 				});
 			}
@@ -79,7 +79,7 @@ module.exports = function(app, express) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
-					searchLocation: data.location,
+					searchLocation: getFirstWord(data.location),
 					searchResults: data.results
 				});
 			}
@@ -92,7 +92,7 @@ module.exports = function(app, express) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
-					searchLocation: data.location,
+					searchLocation: getFirstWord(data.location),
 					searchResults: data.results
 				});
 			}
@@ -105,7 +105,7 @@ module.exports = function(app, express) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
-					searchLocation: data.location,
+					searchLocation: getFirstWord(data.location),
 					searchResults: data.results
 				});
 			}
@@ -118,7 +118,7 @@ module.exports = function(app, express) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
-					searchLocation: data.location,
+					searchLocation: getFirstWord(data.location),
 					searchResults: data.results
 				});
 			}
@@ -131,7 +131,7 @@ module.exports = function(app, express) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
-					searchLocation: data.location,
+					searchLocation: getFirstWord(data.location),
 					searchResults: data.results
 				});
 			}
@@ -157,7 +157,7 @@ module.exports = function(app, express) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
-					searchLocation: data.location,
+					searchLocation: getFirstWord(data.location),
 					searchResults: data.results
 				});
 			}
@@ -170,7 +170,7 @@ module.exports = function(app, express) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
-					searchLocation: data.location,
+					searchLocation: getFirstWord(data.location),
 					searchResults: data.results
 				});
 			}
@@ -196,7 +196,7 @@ module.exports = function(app, express) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
-					searchLocation: data.location,
+					searchLocation: getFirstWord(data.location),
 					searchResults: data.results
 				});
 			}
