@@ -79,6 +79,8 @@ module.exports = function(app, express) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
+					resultsJobQuery: 'Berwick Hospital Center',
+					searchTotalResults: data.totalResults,					
 					searchLocation: getFirstWord(data.location),
 					searchResults: data.results
 				});
@@ -131,6 +133,8 @@ module.exports = function(app, express) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
+					resultsJobQuery: 'Maria Joseph Manor',
+					searchTotalResults: data.totalResults,					
 					searchLocation: getFirstWord(data.location),
 					searchResults: data.results
 				});
@@ -183,7 +187,9 @@ module.exports = function(app, express) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
-					searchLocation: data.location,
+					resultsJobQuery: 'Weis Markets',
+					searchTotalResults: data.totalResults,
+					searchLocation: getFirstWord(data.location),
 					searchResults: data.results
 				});
 			}
