@@ -2,6 +2,7 @@
 var gulp = require('gulp'),
 	cleanCSS = require('gulp-clean-css'),
 	imagemin = require('gulp-imagemin'),
+	cache = require('gulp-cache'),
 	ejsmin = require('gulp-ejsmin'),
 	rename = require('gulp-rename'),
 	uglify = require('gulp-uglify');
@@ -46,8 +47,8 @@ gulp.task('min-css', function() {
 
 // task for minifying img
 gulp.task('min-img', function() {
-	return gulp.src('./public/assets/img/*.+(jpg|png|gif|svg)')
-			   .pipe(imagemin())
+	return gulp.src('./public/assets/img/*.+(jpg|jpeg|png|gif|svg)')
+			   .pipe(cache(imagemin()))
 			   .pipe(rename({ suffix: '.min'}))
 			   .pipe(gulp.dest('./dist/public/assets/img'));
 });
