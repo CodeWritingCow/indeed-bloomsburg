@@ -1,6 +1,7 @@
 // load gulp plugins
 var gulp = require('gulp'),
 	cleanCSS = require('gulp-clean-css'),
+	imagemin = require('gulp-imagemin'),
 	ejsmin = require('gulp-ejsmin'),
 	rename = require('gulp-rename'),
 	uglify = require('gulp-uglify');
@@ -43,9 +44,11 @@ gulp.task('min-css', function() {
 			   .pipe(gulp.dest('./dist/public/assets/css'));
 });
 
-// TODO task for minifying img
+// task for minifying img
 gulp.task('min-img', function() {
 	return gulp.src('./public/assets/img/*.+(jpg|png|gif|svg)')
+			   .pipe(imagemin())
+			   .pipe(rename({ suffix: '.min'}))
 			   .pipe(gulp.dest('./dist/public/assets/img'));
 });
 
