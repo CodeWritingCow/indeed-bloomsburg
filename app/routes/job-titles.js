@@ -38,9 +38,35 @@ module.exports = function(app, express) {
 		});
 	});
 
+	// commercial driving license
+	jobTitleRouter.get('/cdl', function(req, res) {
+		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=cdl%20driver&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+			if (!error && response.statusCode == 200) {
+				var data = JSON.parse(body);
+				res.render('pages/results', {
+					searchLocation: data.location,
+					searchResults: data.results
+				});
+			}
+		});
+	});
+
 	// licensed practicing nurse
 	jobTitleRouter.get('/licensed-practicing-nurse-lpn', function(req, res) {
 		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=lpn&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+			if (!error && response.statusCode == 200) {
+				var data = JSON.parse(body);
+				res.render('pages/results', {
+					searchLocation: data.location,
+					searchResults: data.results
+				});
+			}
+		});
+	});	
+
+	// pharmacist
+	jobTitleRouter.get('/pharmacist', function(req, res) {
+		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=pharmacist&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {

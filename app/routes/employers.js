@@ -34,6 +34,32 @@ module.exports = function(app, express) {
 		});
 	});
 
+	// applebee's jobs
+	employerRouter.get('/applebees', function(req, res) {
+		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=applebees&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+			if (!error && response.statusCode == 200) {
+				var data = JSON.parse(body);
+				res.render('pages/results', {
+					searchLocation: getFirstWord(data.location),
+					searchResults: data.results
+				});
+			}
+		});
+	});
+
+	// aramark jobs
+	employerRouter.get('/aramark', function(req, res) {
+		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=aramark&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+			if (!error && response.statusCode == 200) {
+				var data = JSON.parse(body);
+				res.render('pages/results', {
+					searchLocation: getFirstWord(data.location),
+					searchResults: data.results
+				});
+			}
+		});
+	});
+
 	// geisinger jobs
 	employerRouter.get('/geisinger', function(req, res) {
 		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=geisinger&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
@@ -114,9 +140,35 @@ module.exports = function(app, express) {
 		});
 	});
 
+	// CVS jobs
+	employerRouter.get('/cvs', function(req, res) {
+		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=cvs&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+			if (!error && response.statusCode == 200) {
+				var data = JSON.parse(body);
+				res.render('pages/results', {
+					searchLocation: getFirstWord(data.location),
+					searchResults: data.results
+				});
+			}
+		});
+	});
+
 	// dollar general jobs
 	employerRouter.get('/dollar-general', function(req, res) {
 		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=dollar%20general&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+			if (!error && response.statusCode == 200) {
+				var data = JSON.parse(body);
+				res.render('pages/results', {
+					searchLocation: getFirstWord(data.location),
+					searchResults: data.results
+				});
+			}
+		});
+	});
+
+	// dollar tree jobs
+	employerRouter.get('/dollar-tree', function(req, res) {
+		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=dollar%20tree&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
@@ -145,6 +197,19 @@ module.exports = function(app, express) {
 	// sheetz jobs
 	employerRouter.get('/sheetz', function(req, res) {
 		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=sheetz&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+			if (!error && response.statusCode == 200) {
+				var data = JSON.parse(body);
+				res.render('pages/results', {
+					searchLocation: data.location,
+					searchResults: data.results
+				});
+			}
+		});
+	});
+
+	// TravelCenters of America jobs
+	employerRouter.get('/travelcenters-of-america', function(req, res) {
+		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=TravelCenters%20of%20America&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
