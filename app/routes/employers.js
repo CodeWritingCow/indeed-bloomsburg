@@ -60,22 +60,9 @@ module.exports = function(app, express) {
 		});
 	});
 
-	// geisinger jobs
-	employerRouter.get('/geisinger', function(req, res) {
-		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=geisinger&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
-			if (!error && response.statusCode == 200) {
-				var data = JSON.parse(body);
-				res.render('pages/results', {
-					searchLocation: data.location,
-					searchResults: data.results
-				});
-			}
-		});
-	});
-
-	// bloomsburg university jobs
-	employerRouter.get('/bloomsburg-university', function(req, res) {
-		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=bloomsburg%20university&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+	// autoneum
+	employerRouter.get('/autoneum', function(req, res) {
+		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=autoneum&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
@@ -86,9 +73,9 @@ module.exports = function(app, express) {
 		});
 	});
 
-	// bucknell university jobs
-	employerRouter.get('/bucknell-university', function(req, res) {
-		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=bucknell%20university&l=lewisburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+	// BAYADA jobs
+	employerRouter.get('/bayada', function(req, res) {
+		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=bayada&l=berwick%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
@@ -114,9 +101,9 @@ module.exports = function(app, express) {
 		});
 	});
 
-	// evangelical community hospital jobs
-	employerRouter.get('/evangelical-community-hospital', function(req, res) {
-		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=evangelical%20community%20hospital&l=lewisburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+	// Big Heart Pet Brands
+	employerRouter.get('/big-heart-pet-brands', function(req, res) {
+		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=big%20heart%20pet%20brands&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
@@ -127,9 +114,37 @@ module.exports = function(app, express) {
 		});
 	});
 
-	// BAYADA jobs
-	employerRouter.get('/bayada', function(req, res) {
-		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=bayada&l=berwick%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+	// bloomsburg university jobs
+	employerRouter.get('/bloomsburg-university', function(req, res) {
+		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=bloomsburg%20university&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+			if (!error && response.statusCode == 200) {
+				var data = JSON.parse(body);
+				res.render('pages/results', {
+					searchLocation: getFirstWord(data.location),
+					searchResults: data.results
+				});
+			}
+		});
+	});
+
+	// bon-ton
+	employerRouter.get('/bon-ton', function(req, res) {
+		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=bon-ton&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+			if (!error && response.statusCode == 200) {
+				var data = JSON.parse(body);
+				res.render('pages/results', {
+					resultsJobQuery: 'Bon-Ton',
+					searchTotalResults: data.totalResults,	
+					searchLocation: getFirstWord(data.location),
+					searchResults: data.results
+				});
+			}
+		});
+	});
+
+	// bucknell university jobs
+	employerRouter.get('/bucknell-university', function(req, res) {
+		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=bucknell%20university&l=lewisburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
@@ -179,6 +194,32 @@ module.exports = function(app, express) {
 		});
 	});
 
+	// evangelical community hospital jobs
+	employerRouter.get('/evangelical-community-hospital', function(req, res) {
+		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=evangelical%20community%20hospital&l=lewisburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+			if (!error && response.statusCode == 200) {
+				var data = JSON.parse(body);
+				res.render('pages/results', {
+					searchLocation: getFirstWord(data.location),
+					searchResults: data.results
+				});
+			}
+		});
+	});
+
+	// geisinger jobs
+	employerRouter.get('/geisinger', function(req, res) {
+		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=geisinger&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+			if (!error && response.statusCode == 200) {
+				var data = JSON.parse(body);
+				res.render('pages/results', {
+					searchLocation: data.location,
+					searchResults: data.results
+				});
+			}
+		});
+	});
+
 	// maria joseph manor jobs
 	employerRouter.get('/maria-joseph-manor', function(req, res) {
 		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=maria%20joseph%20manor&l=danville%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
@@ -194,9 +235,35 @@ module.exports = function(app, express) {
 		});
 	});
 
+	// OneSource Staffing Solutions - employment agency
+	employerRouter.get('/onesource', function(req, res) {
+		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=onesource&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+			if (!error && response.statusCode == 200) {
+				var data = JSON.parse(body);
+				res.render('pages/results', {
+					searchLocation: data.location,
+					searchResults: data.results
+				});
+			}
+		});
+	});
+
 	// sheetz jobs
 	employerRouter.get('/sheetz', function(req, res) {
 		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=sheetz&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
+			if (!error && response.statusCode == 200) {
+				var data = JSON.parse(body);
+				res.render('pages/results', {
+					searchLocation: data.location,
+					searchResults: data.results
+				});
+			}
+		});
+	});
+
+	// sykes
+	employerRouter.get('/sykes', function(req, res) {
+		request('http://api.indeed.com/ads/apisearch?publisher=' + config.publisher_id + '&format=json&q=sykes&l=bloomsburg%2C+pa&sort=date&radius=&st=&jt=&start=&limit=' + config.results_limit + '&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2', function(error, response, body) {
 			if (!error && response.statusCode == 200) {
 				var data = JSON.parse(body);
 				res.render('pages/results', {
