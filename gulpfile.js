@@ -7,12 +7,15 @@ var gulp = require('gulp'),
 	rename = require('gulp-rename'),
 	uglify = require('gulp-uglify');
 
-// task for minifying JavaScript
+// defines common destinations
+var DEST = 'dist';
+
+// task for minifying JavaScript: currently handles server.js only
 gulp.task('min-js', function() {
 	return gulp.src('server.js')
 			   .pipe(uglify())
 			   .pipe(rename({ suffix: '.min' }))
-			   .pipe(gulp.dest('dist'));
+			   .pipe(gulp.dest(DEST));
 });
 
 // task for minifying *.js containing routes
@@ -56,8 +59,36 @@ gulp.task('min-img', function() {
 // task for running min-ejs-pages and min-ejs partials
 gulp.task('min-ejs', ['min-ejs-pages', 'min-ejs-partials']);
 
-// task for building app for deployment
-gulp.task('build', ['min-js', 'min-js-routes', 'min-ejs', 'min-css', 'min-img'], function() {
-	return gulp.src(['package.json', 'Procfile', 'config.js'])
-			   .pipe(gulp.dest('./dist'));
+// task for copying package.json to dist folder
+gulp.task('copy-package', function() {
+	return gulp.src('package.json')
+			   .pipe(gulp.dest(DEST));
 });
+
+// task for copying Procfile to dist folder
+gulp.task('copy-procfile', function() {
+	return gulp.src('Procfile')
+			   .pipe(gulp.dest(DEST));
+});
+
+// task for copying config.js to dist folder
+gulp.task('copy-config', function() {
+	return gulp.src('config.js')
+			   .pipe(gulp.dest(DEST));
+});
+
+// task for watching for file changes and running tasks accordingly
+gulp.task('watch', function() {
+	gulp.watch('server.js', ['min-js']);
+	gulp.watch('./app/routes/*.js', ['min-js-routes']);
+	gulp.watch('./views/pages/*.ejs', ['min-ejs-pages']);
+	gulp.watch('./views/partials/*.ejs', ['min-ejs-partials']);
+	gulp.watch('./public/assets/css/*.css', ['min-css']);
+	gulp.watch('./public/assets/img/*.+(jpg|jpeg|png|gif|svg)', ['min-img']);
+	gulp.watch('package.json', ['copy-package']);	
+	gulp.watch('Procfile', ['copy-procfile']);
+	gulp.watch('config.js', ['copy-config']);
+});
+
+// task for building app for deployment
+gulp.task('build', ['min-js', 'min-js-routes', 'min-ejs', 'min-css', 'min-img', 'copy-package', 'copy-procfile', 'copy-config']);
