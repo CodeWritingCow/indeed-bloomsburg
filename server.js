@@ -55,3 +55,5 @@ app.get('/', function(req, res) {
 // =======================================
 app.listen(config.port);
 console.log('App started! Look at port ' + config.port);
+
+module.exports = app; // exports server for testing
