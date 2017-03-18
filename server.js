@@ -3,8 +3,6 @@
 
 // LOAD NPM PACKAGES -------------------------
 // =======================================
-require('dotenv').config(); // dotenv loads environmental variables. Works in development environment only!
-
 var express = require('express'), // express is a 'fast, unopinionated minimalist web framework'
 	app = express(), // initialize app with express
 	morgan = require('morgan'), // morgan is a HTTP request logger middleware
@@ -39,6 +37,9 @@ app.use('/job-titles', jobTitleRoutes);
 
 var searchRoute = require('./app/routes/search')(app, express);
 app.use('/', searchRoute);
+
+var geisingerRoutes = require('./app/routes/geisinger')(app, express);
+app.use('/geisinger', geisingerRoutes);
 
 // this mounts test route for testing middlewares and new site features
 var testRoute = require('./app/routes/test')(app, express);

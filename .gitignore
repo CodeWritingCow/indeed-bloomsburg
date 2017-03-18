@@ -17,8 +17,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# Environmental variables
-.env
+# Indeed publisher ID
+token.js
 
 # Dependency directories
 node_modules
